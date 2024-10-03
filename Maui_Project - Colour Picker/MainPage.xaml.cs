@@ -1,8 +1,12 @@
 ﻿
+using System.Diagnostics;
+
 namespace Maui_Project___Colour_Picker
 {
     public partial class MainPage : ContentPage
     {
+        bool isRandom;
+        string hexValue;
         public MainPage()
         {
             InitializeComponent();
@@ -10,21 +14,42 @@ namespace Maui_Project___Colour_Picker
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
+            if(!isRandom)
+            { 
             var red = sldRed.Value;
-            var green = sldGree.Value;
+            var green = sldGreen.Value;
             var blue = sldBlue.Value;
 
             Color color = Color.FromRgb(red, green, blue);
 
             SetColor(color);
-
+            }
         }
 
         private void SetColor(Color color)
         {
+            Debug.WriteLine(color.ToString());
             btnRandom.BackgroundColor = color;
             Container.BackgroundColor = color;
             lblHex.Text = color.ToHex();
+        }
+
+        private void btnRandom_clicked(object sender, EventArgs e)
+        {
+            isRandom = true;
+            var random = new Random();
+
+            var color = Color.FromRgb(
+                random.Next(0, 256),
+                random.Next(0, 256),
+                random.Next(0, 256));
+
+            SetColor(color);
+
+            sldRed.Value = color.Red;
+            sldGreen.Value = color.Green;
+            sldBlue.Value = color.Blue;
+            isRandom = false;
         }
     }
 }

@@ -54,9 +54,11 @@
                                      WidthRequest="25" />
                     </HorizontalStackLayout>
                 </Frame>
-                        <Button x:Name="btnRandom"
-                        BackgroundColor="{StaticResource Primary}"
-                        Text="Generate Random Colour" />
+                
+                <Button x:Name="btnRandom"
+                BackgroundColor="{StaticResource Primary}"
+                Text="Generate Random Colour" 
+                Clicked="btnRandom_clicked"/>
             </VerticalStackLayout>
         </Frame>
     </Grid>
