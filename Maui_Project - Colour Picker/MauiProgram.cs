@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace Maui_Project___Colour_Picker
 {
@@ -7,6 +8,8 @@ namespace Maui_Project___Colour_Picker
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            builder.UseMauiApp<App>().UseMauiCommunityToolkit();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>

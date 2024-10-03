@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Maui.Alerts;
 using System.Diagnostics;
 
 namespace Maui_Project___Colour_Picker
@@ -31,7 +32,8 @@ namespace Maui_Project___Colour_Picker
             Debug.WriteLine(color.ToString());
             btnRandom.BackgroundColor = color;
             Container.BackgroundColor = color;
-            lblHex.Text = color.ToHex();
+            hexValue = color.ToHex();
+            lblHex.Text = hexValue;
         }
 
         private void btnRandom_clicked(object sender, EventArgs e)
@@ -50,6 +52,15 @@ namespace Maui_Project___Colour_Picker
             sldGreen.Value = color.Green;
             sldBlue.Value = color.Blue;
             isRandom = false;
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(hexValue);
+            var toast = Toast.Make("Color copid",
+                CommunityToolkit.Maui.Core.ToastDuration.Short,
+                12);
+            await toast.Show();
         }
     }
 }
